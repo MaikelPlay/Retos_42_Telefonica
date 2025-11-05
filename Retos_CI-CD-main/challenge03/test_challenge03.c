@@ -2,28 +2,10 @@
 #include <string.h>
 #include <assert.h>
 
-// Función que copia una cadena fuente a una cadena destino
-char *mi_strcpy(char *dest, const char *src) {
-    // Guardar el puntero original para retornarlo
-    char *original_dest = dest;
-    
-    // Copiar cada carácter de src a dest hasta encontrar el nulo
-    while (*src != '\0') {
-        *dest = *src;
-        dest++;
-        src++;
-    }
-    
-    // Asegurar que la cadena destino termina con '\0'
-    *dest = '\0';
-    
-    // Retornar el puntero original al inicio de la cadena destino
-    return original_dest;
-}
-
-// Otras declaraciones de funciones
+// Declaraciones de funciones
 size_t mi_strlen(const char *s);
 int mi_strcmp(const char *s1, const char *s2);
+char *mi_strcpy(char *dest, const char *src);
 
 int main(void) {
     // Test mi_strlen
@@ -40,7 +22,6 @@ int main(void) {
     
     // Test mi_strcpy
     char dest[50];
-    char dest2[50];
     char *result;
     
     printf("\nPruebas de mi_strcpy:\n");
