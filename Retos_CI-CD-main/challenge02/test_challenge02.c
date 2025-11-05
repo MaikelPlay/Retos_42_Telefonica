@@ -11,18 +11,22 @@ int main(void) {
     // Suma
     assert(suma(2, 3) == 5);
     assert(suma(-2, 3) == 1);
+    assert(suma(-2, -2) == -4);
 
     // Resta
     assert(resta(5, 3) == 2);
     assert(resta(3, 5) == -2);
+    assert(resta(-3, -5) == 2);
 
     // Multiplicación
     assert(multiplicacion(4, 5) == 20);
     assert(multiplicacion(-4, 5) == -20);
+    assert(multiplicacion(-4, -5) == 20);
 
     // División
     assert(division(10, 2) == 5);
     assert(division(-9, 3) == -3);
+    assert(division(-8, -2) == 4);
 
     // División por cero (según requisito, esperamos 0 o manejo seguro)
     assert(division(5, 0) == 0);
