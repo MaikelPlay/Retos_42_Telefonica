@@ -9,7 +9,8 @@ $(TARGET): starter.c
 	$(CC) $(CFLAGS) -o $(TARGET) starter.c
 
 test:
-	sh run_tests.sh
+	$(CC) $(CFLAGS) -DTESTING -o $(TEST_TARGET) starter.c test_challenge05.c
+	./$(TEST_TARGET)
 
 clean:
 	rm -f $(TARGET) $(TEST_TARGET)
