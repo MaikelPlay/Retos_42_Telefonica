@@ -9,8 +9,10 @@ $(TARGET): starter.c
 	$(CC) $(CFLAGS) -o $(TARGET) starter.c
 
 test: starter.c test_challenge01.c
-	$(CC) $(CFLAGS) -o $(TEST_TARGET) starter.c test_challenge01.c
+	$(CC) $(CFLAGS) -DTESTING -o $(TEST_TARGET) starter.c test_challenge01.c
 	./$(TEST_TARGET)
 
 clean:
 	rm -f $(TARGET) $(TEST_TARGET)
+
+
