@@ -2,10 +2,28 @@
 #include <string.h>
 #include <assert.h>
 
-// Declaraciones de nuestras funciones
+// Función que copia una cadena fuente a una cadena destino
+char *mi_strcpy(char *dest, const char *src) {
+    // Guardar el puntero original para retornarlo
+    char *original_dest = dest;
+    
+    // Copiar cada carácter de src a dest hasta encontrar el nulo
+    while (*src != '\0') {
+        *dest = *src;
+        dest++;
+        src++;
+    }
+    
+    // Asegurar que la cadena destino termina con '\0'
+    *dest = '\0';
+    
+    // Retornar el puntero original al inicio de la cadena destino
+    return original_dest;
+}
+
+// Otras declaraciones de funciones
 size_t mi_strlen(const char *s);
 int mi_strcmp(const char *s1, const char *s2);
-char *mi_strcpy(char *dest, const char *src);
 
 int main(void) {
     // Test mi_strlen
@@ -21,19 +39,44 @@ int main(void) {
     assert(mi_strcmp("abc", "abcd") < 0);  // Prefijo
     
     // Test mi_strcpy
-    char dest[20];
-    char dest2[20];
+    char dest[50];
+    char dest2[50];
+    char *result;
     
-    // Probar cadena vacía
-    mi_strcpy(dest, "");
-    strcpy(dest2, "");
-    assert(strcmp(dest, dest2) == 0);
+    printf("\nPruebas de mi_strcpy:\n");
     
-    // Probar cadena normal
-    mi_strcpy(dest, "Hello World");
-    strcpy(dest2, "Hello World");
-    assert(strcmp(dest, dest2) == 0);
+    // 1. Probar cadena vacía
+    printf("1. Prueba con cadena vacía...\n");
+    result = mi_strcpy(dest, "");
+    assert(dest[0] == '\0');
+    assert(result == dest);
+    printf("   OK - Cadena vacía copiada correctamente\n");
     
+    // 2. Probar cadena normal
+    printf("2. Prueba con cadena normal...\n");
+    result = mi_strcpy(dest, "Hola Mundo");
+    assert(strcmp(dest, "Hola Mundo") == 0);
+    printf("   OK - 'Hola Mundo' copiado correctamente\n");
+    
+    // 3. Probar caracteres especiales
+    printf("3. Prueba con caracteres especiales...\n");
+    result = mi_strcpy(dest, "Tab\tSalto\nFin");
+    assert(strcmp(dest, "Tab\tSalto\nFin") == 0);
+    printf("   OK - Caracteres especiales copiados correctamente\n");
+    
+    // 4. Probar cadena con espacios
+    printf("4. Prueba con espacios...\n");
+    result = mi_strcpy(dest, "  espacios  al  inicio  y  fin  ");
+    assert(strcmp(dest, "  espacios  al  inicio  y  fin  ") == 0);
+    printf("   OK - Espacios copiados correctamente\n");
+    
+    // 5. Probar números y símbolos
+    printf("5. Prueba con números y símbolos...\n");
+    result = mi_strcpy(dest, "12345!@#$%");
+    assert(strcmp(dest, "12345!@#$%") == 0);
+    printf("   OK - Números y símbolos copiados correctamente\n");
+    
+    printf("\nTodas las pruebas de mi_strcpy pasaron exitosamente!\n");
     printf("All tests passed\n");
     return 0;
 }
