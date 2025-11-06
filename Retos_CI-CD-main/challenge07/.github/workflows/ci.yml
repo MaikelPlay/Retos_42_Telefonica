@@ -1,8 +1,37 @@
 name: C CI
 
-# Preguntas de evaluación relacionadas con este workflow:
-#
-# Q: ¿El archivo .github/workflows/ci.yml existe?
+on:
+  push:
+    branches: [ main, master, develop ]
+  pull_request:
+    branches: [ main, master, develop ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v3
+      
+    - name: List files in workspace
+      run: |
+        pwd
+        ls -la
+      
+    - name: Set up GCC
+      run: |
+        sudo apt-get update
+        sudo apt-get install -y build-essential
+        gcc --version
+        
+    - name: Show Makefile contents
+      run: cat Makefile
+        
+    - name: Build
+      run: |
+        echo "Compilando el programa..."
+        make all
 # A: Sí ✅ - Este es el archivo
 #
 # Q: ¿El workflow se ejecuta en cada push y pull_request?
