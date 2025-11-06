@@ -17,7 +17,8 @@ jobs:
     - name: Checkout repository
       uses: actions/checkout@v3
       
-    - name: Set up GCC
+    - name: Set up GCC (Windows and Linux only)
+      if: ${{ matrix.os != 'macos-latest' }}
       uses: egor-tensin/setup-gcc@v1
       with:
         platform: x64
