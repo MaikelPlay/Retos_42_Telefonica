@@ -36,13 +36,11 @@ jobs:
     # macOS NO necesita un paso de instalación, ya que usa sus herramientas predeterminadas.
 
     - name: Debug environment
-      working-directory: ./Retos_CI-CD-main/challenge08
       run: |
         echo "OS: ${{ matrix.os }}"
         gcc --version
         
     - name: Build
-      working-directory: ./Retos_CI-CD-main/challenge08
       run: |
         echo "Building on ${{ matrix.os }}..."
         if [ "${{ matrix.os }}" == "windows-latest" ]; then
@@ -53,7 +51,6 @@ jobs:
       shell: bash
       
     - name: Test program
-      working-directory: ./Retos_CI-CD-main/challenge08
       run: |
         echo "Testing on ${{ matrix.os }}..."
         ./starter
