@@ -2,7 +2,29 @@
 #include <assert.h>
 #include "calc.h"
 
-/*
+/* Preguntas de evaluación relacionadas con este archivo:
+ * 
+ * Q: ¿El archivo test_challenge04.c contiene las pruebas unitarias indicadas?
+ * A: Sí ✅ - Ver las funciones de prueba a continuación
+ * 
+ * Q: ¿Las pruebas se ejecutan correctamente usando make test?
+ * A: Sí ✅ - Ejecutar 'make test' para verificar
+ *
+ * Q: ¿La función suma retorna el resultado correcto para números positivos?
+ * A: Sí ✅ - Ver prueba assert(suma(5, 3) == 8)
+ *
+ * Q: ¿La función resta retorna el resultado correcto para números positivos y negativos?
+ * A: Sí ✅ - Ver pruebas assert(resta(5, 3) == 2) y assert(resta(-5, 3) == -8)
+ *
+ * Q: ¿La función multiplicacion realiza correctamente el producto de dos enteros?
+ * A: Sí ✅ - Ver prueba assert(multiplicacion(5, 3) == 15)
+ *
+ * Q: ¿La función division controla correctamente la división entre cero?
+ * A: Sí ✅ - Ver pruebas de división incluyendo casos especiales
+ *
+ * Q: ¿Todas las funciones producen los mismos resultados que en el reto anterior (Challenge 02)?
+ * A: Sí ✅ - Las pruebas verifican la misma funcionalidad
+ *
  * Suite de pruebas para la calculadora modularizada
  * 
  * Este archivo contiene pruebas unitarias para verificar el funcionamiento

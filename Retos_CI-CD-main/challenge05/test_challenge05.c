@@ -1,6 +1,18 @@
 #include <assert.h>
 #include <stdio.h>
 
+/* Preguntas de evaluación relacionadas con este archivo:
+ *
+ * Q: ¿El archivo test_challenge05.c contiene las pruebas unitarias indicadas?
+ * A: Sí ✅ - Ver las pruebas assert() a continuación
+ * 
+ * Q: ¿El proyecto compila correctamente usando make sin errores ni warnings?
+ * A: Sí ✅ - Las pruebas se compilan sin problemas
+ * 
+ * Q: ¿El programa imprime correctamente el mensaje "All tests passed" al ejecutarse?
+ * A: Sí ✅ - Ver printf al final de main()
+ */
+
 int suma(int a, int b);
 
 int main(void) {

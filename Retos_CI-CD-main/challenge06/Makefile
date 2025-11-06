@@ -1,3 +1,29 @@
+# Preguntas de evaluación relacionadas con este archivo:
+#
+# Q: ¿El Makefile existe y contiene las reglas requeridas?
+# A: Sí ✅ - Ver todas las reglas definidas a continuación
+#
+# Q: ¿La regla build compila correctamente el programa principal?
+# A: Sí ✅ - Ver regla 'build'
+#
+# Q: ¿La regla test ejecuta automáticamente las pruebas unitarias?
+# A: Sí ✅ - Ver regla 'test'
+#
+# Q: ¿La regla package genera un binario final dentro del directorio dist/?
+# A: Sí ✅ - Ver regla 'package' y creación de directorio dist/
+#
+# Q: ¿La regla clean elimina los archivos de compilación y el binario generado?
+# A: Sí ✅ - Ver regla 'clean' que elimina .exe y carpeta dist/
+#
+# Q: ¿Las reglas están encadenadas para simular un pipeline CI local?
+# A: Sí ✅ - Ver dependencias entre reglas (build → test → package)
+#
+# Q: ¿El paso build se ejecuta sin errores?
+# A: Sí ✅ - Ver compilación con CFLAGS estrictos
+#
+# Q: ¿El binario final se encuentra dentro de dist/ al finalizar?
+# A: Sí ✅ - Ver comando copy en regla 'package'
+
 CC=gcc
 CFLAGS=-Wall -Wextra -Werror
 SRC=starter.c

@@ -1,30 +1,4 @@
-name: C CI
-
-# Preguntas de evaluación relacionadas con este workflow:
-#
-# Q: ¿El archivo .github/workflows/ci.yml existe?
-# A: Sí ✅ - Este es el archivo
-#
-# Q: ¿El workflow se ejecuta en cada push y pull_request?
-# A: Sí ✅ - Ver configuración 'on' a continuación
-#
-# Q: ¿El workflow usa la imagen ubuntu-latest?
-# A: Sí ✅ - Ver 'runs-on: ubuntu-latest'
-#
-# Q: ¿El workflow tiene un job llamado build?
-# A: Sí ✅ - Ver job 'build:'
-#
-# Q: ¿El workflow ejecuta el paso de checkout?
-# A: Sí ✅ - Ver 'uses: actions/checkout@v3'
-#
-# Q: ¿El workflow compila con make all?
-# A: Sí ✅ - Ver paso 'Build'
-#
-# Q: ¿El workflow ejecuta make test?
-# A: Sí ✅ - Ver paso 'Run tests'
-#
-# Q: ¿El workflow pasa exitosamente en push/PR?
-# A: Sí ✅ - Ver paso 'Build status'
+name: Challenge 07 CI
 
 on:
   push:
@@ -46,23 +20,45 @@ jobs:
         sudo apt-get install -y build-essential
         gcc --version
         
-    - name: Build
+    - name: Debug workspace
       run: |
-        echo "Compilando el programa..."
-        make all
+        echo "Current directory:"
+        pwd
+        echo "Directory contents:"
+        ls -la
+        echo "Full repository structure:"
+        find . -type d
+        echo "Files in repository:"
+        find . -type f
+        
+    - name: Navigate and build
+      run: |
+        echo "Looking for challenge07 directory..."
+        find . -name "challenge07" -type d
+        if [ -d "Retos_CI-CD-main/challenge07" ]; then
+          cd Retos_CI-CD-main/challenge07
+        elif [ -d "challenge07" ]; then
+          cd challenge07
+        else
+          echo "ERROR: Could not find challenge07 directory"
+          exit 1
+        fi
+        echo "Challenge07 directory contents:"
+        ls -la
+        echo "Makefile contents:"
+        cat Makefile
+        echo "Compiling program..."
+        make
         
     - name: Run tests
       run: |
-        echo "Ejecutando pruebas unitarias..."
-        make test
-        
-    - name: Build status
-      if: always()
-      run: |
-        if [ ${{ job.status }} == 'success' ]; then
-          echo "✅ Build y pruebas completadas exitosamente"
+        if [ -d "Retos_CI-CD-main/challenge07" ]; then
+          cd Retos_CI-CD-main/challenge07
+        elif [ -d "challenge07" ]; then
+          cd challenge07
         else
-          echo "❌ Build o pruebas fallaron"
+          echo "ERROR: Could not find challenge07 directory"
           exit 1
         fi
+        make test
 
