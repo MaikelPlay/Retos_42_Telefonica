@@ -1,4 +1,4 @@
-name: Docker CI
+name: Challenge 11 Docker CI
 
 on:
   push:
