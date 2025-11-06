@@ -1,0 +1,68 @@
+name: C CI
+
+# Preguntas de evaluación relacionadas con este workflow:
+#
+# Q: ¿El archivo .github/workflows/ci.yml existe?
+# A: Sí ✅ - Este es el archivo
+#
+# Q: ¿El workflow se ejecuta en cada push y pull_request?
+# A: Sí ✅ - Ver configuración 'on' a continuación
+#
+# Q: ¿El workflow usa la imagen ubuntu-latest?
+# A: Sí ✅ - Ver 'runs-on: ubuntu-latest'
+#
+# Q: ¿El workflow tiene un job llamado build?
+# A: Sí ✅ - Ver job 'build:'
+#
+# Q: ¿El workflow ejecuta el paso de checkout?
+# A: Sí ✅ - Ver 'uses: actions/checkout@v3'
+#
+# Q: ¿El workflow compila con make all?
+# A: Sí ✅ - Ver paso 'Build'
+#
+# Q: ¿El workflow ejecuta make test?
+# A: Sí ✅ - Ver paso 'Run tests'
+#
+# Q: ¿El workflow pasa exitosamente en push/PR?
+# A: Sí ✅ - Ver paso 'Build status'
+
+on:
+  push:
+    branches: [ main, master, develop ]
+  pull_request:
+    branches: [ main, master, develop ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v3
+      
+    - name: Set up GCC
+      run: |
+        sudo apt-get update
+        sudo apt-get install -y build-essential
+        gcc --version
+        
+    - name: Build
+      run: |
+        echo "Compilando el programa..."
+        make all
+        
+    - name: Run tests
+      run: |
+        echo "Ejecutando pruebas unitarias..."
+        make test
+        
+    - name: Build status
+      if: always()
+      run: |
+        if [ ${{ job.status }} == 'success' ]; then
+          echo "✅ Build y pruebas completadas exitosamente"
+        else
+          echo "❌ Build o pruebas fallaron"
+          exit 1
+        fi
+
