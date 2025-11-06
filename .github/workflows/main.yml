@@ -26,12 +26,23 @@ jobs:
         pwd
         echo "Directory contents:"
         ls -la
-        echo "Repository structure:"
-        find . -type f -name "Makefile" -o -name "*.c"
+        echo "Full repository structure:"
+        find . -type d
+        echo "Files in repository:"
+        find . -type f
         
     - name: Navigate and build
       run: |
-        cd Retos_CI-CD-main/challenge07
+        echo "Looking for challenge07 directory..."
+        find . -name "challenge07" -type d
+        if [ -d "Retos_CI-CD-main/challenge07" ]; then
+          cd Retos_CI-CD-main/challenge07
+        elif [ -d "challenge07" ]; then
+          cd challenge07
+        else
+          echo "ERROR: Could not find challenge07 directory"
+          exit 1
+        fi
         echo "Challenge07 directory contents:"
         ls -la
         echo "Makefile contents:"
@@ -41,8 +52,16 @@ jobs:
         
     - name: Run tests
       run: |
-        cd Retos_CI-CD-main/challenge07
+        if [ -d "Retos_CI-CD-main/challenge07" ]; then
+          cd Retos_CI-CD-main/challenge07
+        elif [ -d "challenge07" ]; then
+          cd challenge07
+        else
+          echo "ERROR: Could not find challenge07 directory"
+          exit 1
+        fi
         make test
+
         
     - name: Run tests
       run: |
