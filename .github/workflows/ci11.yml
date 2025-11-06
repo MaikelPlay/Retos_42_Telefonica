@@ -1,0 +1,19 @@
+name: Docker CI
+
+on:
+  push:
+    branches: [ main, master, develop ]
+  pull_request:
+    branches: [ main, master, develop ]
+
+jobs:
+  docker-build:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v3
+    - name: Build Docker image
+      working-directory: ./Retos_CI-CD-main/challenge11
+      run: docker build -t miapp .
+    - name: Run container
+      working-directory: ./Retos_CI-CD-main/challenge11
+      run: docker run --rm miapp
