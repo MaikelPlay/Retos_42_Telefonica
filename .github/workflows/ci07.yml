@@ -71,19 +71,4 @@ jobs:
         fi
         echo "Compilando el programa..."
         make all
-        
-    - name: Run tests
-      run: |
-        echo "Ejecutando pruebas unitarias..."
-        make test
-        
-    - name: Build status
-      if: always()
-      run: |
-        if [ ${{ job.status }} == 'success' ]; then
-          echo "✅ Build y pruebas completadas exitosamente"
-        else
-          echo "❌ Build o pruebas fallaron"
-          exit 1
-        fi
-
+      

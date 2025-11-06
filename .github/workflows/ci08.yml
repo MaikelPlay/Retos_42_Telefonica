@@ -1,4 +1,4 @@
-name: C Matrix CI
+name: Challengue 08: C Matrix CI
 
 on:
   push:
