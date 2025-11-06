@@ -1,11 +1,23 @@
+# Configuración común
 CC=gcc
 CFLAGS=-Wall -Wextra -Werror
 TARGET=starter
 
-all: $(TARGET)
+# Configuración específica del sistema operativo
+ifdef SystemRoot
+    # Windows con MinGW
+    TARGET_EXEC=$(TARGET).exe
+    RM=del /F /Q
+else
+    # Linux/MacOS
+    TARGET_EXEC=$(TARGET)
+    RM=rm -f
+endif
 
-$(TARGET): starter.c
-	$(CC) $(CFLAGS) -o $(TARGET) starter.c
+all: $(TARGET_EXEC)
+
+$(TARGET_EXEC): starter.c
+	$(CC) $(CFLAGS) -o $@ starter.c
 
 clean:
-	rm -f $(TARGET)
+	$(RM) $(TARGET_EXEC)
