@@ -1,0 +1,44 @@
+name: C Matrix CI
+
+on:
+  push:
+    branches: [ main, master, develop ]
+  pull_request:
+    branches: [ main, master, develop ]
+
+jobs:
+  build:
+    runs-on: ${{ matrix.os }}
+    strategy:
+      matrix:
+        os: [ubuntu-latest, macos-latest, windows-latest]
+        
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v3
+      
+    - name: Set up GCC
+      uses: egor-tensin/setup-gcc@v1
+      with:
+        platform: x64
+        
+    - name: Debug environment
+      run: |
+        echo "OS: ${{ matrix.os }}"
+        gcc --version
+        
+    - name: Build
+      run: |
+        echo "Building on ${{ matrix.os }}..."
+        if [ "${{ matrix.os }}" == "windows-latest" ]; then
+          mingw32-make all
+        else
+          make all
+        fi
+      shell: bash
+      
+    - name: Test program
+      run: |
+        echo "Testing on ${{ matrix.os }}..."
+        ./starter
+      shell: bash
