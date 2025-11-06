@@ -19,6 +19,6 @@ jobs:
     - name: Build and push
       uses: docker/build-push-action@v4
       with:
-        context: .
+        context: ./Retos_CI-CD-main/challenge12
         push: true
         tags: ${{ secrets.DOCKERHUB_USERNAME }}/miapp:latest
