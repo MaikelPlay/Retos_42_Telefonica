@@ -22,3 +22,4 @@ jobs:
         context: ./Retos_CI-CD-main/challenge12
         push: true
         tags: ${{ secrets.DOCKERHUB_USERNAME }}/miapp:latest
+        #
