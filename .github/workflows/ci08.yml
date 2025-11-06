@@ -23,11 +23,13 @@ jobs:
         platform: x64
         
     - name: Debug environment
+      working-directory: ./Retos_CI-CD-main/challenge07
       run: |
         echo "OS: ${{ matrix.os }}"
         gcc --version
         
     - name: Build
+      working-directory: ./Retos_CI-CD-main/challenge07
       run: |
         echo "Building on ${{ matrix.os }}..."
         if [ "${{ matrix.os }}" == "windows-latest" ]; then
@@ -38,6 +40,7 @@ jobs:
       shell: bash
       
     - name: Test program
+      working-directory: ./Retos_CI-CD-main/challenge07
       run: |
         echo "Testing on ${{ matrix.os }}..."
         ./starter
