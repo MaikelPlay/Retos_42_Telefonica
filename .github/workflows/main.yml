@@ -31,13 +31,18 @@ jobs:
         
     - name: Navigate and build
       run: |
-        cd challenge07
+        cd Retos_CI-CD-main/challenge07
         echo "Challenge07 directory contents:"
         ls -la
         echo "Makefile contents:"
         cat Makefile
         echo "Compiling program..."
         make
+        
+    - name: Run tests
+      run: |
+        cd Retos_CI-CD-main/challenge07
+        make test
         
     - name: Run tests
       run: |
